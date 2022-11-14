@@ -224,7 +224,7 @@ Pada tahap ini, untuk sistem rekomendasi yang dibuat akan menggunakan model deng
 
 ### Jaccard Similarity (Ground Truth)
 Jaccard Similarity untuk Kasus *Binary* [[4](Hal 4-5)](https://link.springer.com/article/10.1007/s13278-020-00660-9):
-$$\text{S}_{\text{Jaccard}}(\vec{x}, \vec{y})=\frac{\text{N}_{11}}{\text{N}_{10}+\text{N}_{01}+\text{N}_{11}}$$
+$$\text{S}\_{\text{Jaccard}}(\vec{x}, \vec{y})=\frac{\text{N}\_{11}}{\text{N}\_{10}+\text{N}\_{01}+\text{N}\_{11}}$$
   Dengan:
   * $\text{N}_{11}$ adalah banyaknya elemen dengan index bersesuaian yang bernilai $1$ pada $x$ dan $y$.
   * $\text{N}_{10}$ adalah banyaknya elemen dengan index bersesuaian yang bernilai $1$ pada $x$ dan bernilai $0$ pada $y$.
@@ -264,7 +264,11 @@ Rumus *Cosine Similarity* didefinisikan sebagai berikut [[5]](http://www.snet.tu
 $$\text{S}_{\text{Cosinus}}(\vec{x},\vec{y})=\cos(\theta)=\frac{\vec{x}\cdot\vec{y}}{\|\vec{x}\|\|\vec{y}\|}$$
 Dengan:
 * $\theta$ merupakan sudut antara vektor $\vec{x}$ dan $\vec{y}$.
-* $\|\vec{x}\|$ dan $\|\vec{y}\|$ berturut-turut adalah besar atau panjang vektor $\vec{x}$ dan $\vec{y}$. Dengan rumus $\|\vec{x}\|=\sqrt{\sum_{i=1}^n{x_{i}^2}}$ dimana $x_{i}$ merupakan elemen vektor $\vec{x}$ posisi ke-$i$.
+* $\|\vec{x}\|$ dan $\|\vec{y}\|$ berturut-turut adalah besar atau panjang vektor $\vec{x}$ dan $\vec{y}$. 
+
+Catatan: 
+$$\|\vec{x}\|=\sqrt{\sum\_{i=1}^n {x\_{i}^2}}$$
+dimana $x\_{i}$ merupakan elemen vektor $\vec{x}$ posisi ke $i$.
 
 Kelebihan metode ini adalah tidak bergantung pada besarnya vektor. Contoh vektor $\vec{x}=[2, 0, 4]$ dengan vektor $\vec{y}=[1, 0, 2]$ yang memiliki arah yang sama namun berbeda besarannya (akibat berbeda nilai pada fiturnya). Jika vektor $\vec{x}$ dan $\vec{y}$ dihitung tingkat kemiripan atau relevansi dengan metode ini maka nilainya $1$ (kemiripan penuh). Namun kelebihan ini dapat menjadi kekurangan jika pada kasus tertentu, makna frekuensi kemunculan fitur menjadi penting. Sedangkan pada kasus ini, *Cosine Similarity* aman digunakan karena frekuensi tiap genre pada film mempunyai bobot yang sama yaitu 0 (tidak ada) atau 1 (ada).
 
@@ -297,20 +301,21 @@ Sebagai contoh, film Waiting to Exhale (1995) dan Father of the Bride Part II (1
 
 ### Euclidean Similarity
 *Euclidean Distances* didefinisikan sebagai berikut:
-$$\text{D}_{\text{Euclidean}}(\vec{x},\vec{y})=\sqrt{\sum^{n}_{i=1}(x_{i}-y_{i})^2}$$
-Dengan $x_{i}$ dan $y_{i}$ berturut-turut adalah elemen ke-$i$ pada vektor $\vec{x}$ dan $\vec{y}$. 
+$$\text{D}\_{\text{Euclidean}}(\vec{x},\vec{y})=\sqrt{\sum^{n}\_{i=1}(x\_{i}-y\_{i})^2}$$
+Dengan $x\_{i}$ dan $y\_{i}$ berturut-turut adalah elemen ke $i$ pada vektor $\vec{x}$ dan $\vec{y}$. 
 
 Dalam buku berjudul `Programming Collective Intelligence [Page 10]` karya Toby Segaran (2007) [[6]](https://www.oreilly.com/library/view/programming-collective-intelligence/9780596529321/) mendefinisikan persamaan *Euclidean Similarity* sebagai berikut:
-$$\text{S}_{\text{Euclidean}}(\vec{x},\vec{y})=\frac{1}{1+\text{D}_{\text{Euclidean}}(\vec{x}, \vec{y})}$$
+$$\text{S}\_{\text{Euclidean}}(\vec{x},\vec{y})=\frac{1}{1+\text{D}\_{\text{Euclidean}}(\vec{x}, \vec{y})}$$
 
-Kelebihan Euclidean adalah dapat memperoleh nilai perbedaan antara dua vektor yang sama arahnya namun beda besarnya. Contoh vektor $\vec{x}=[2, 0, 4]$ dengan vektor $\vec{y}=[1, 0, 2]$ jika menggunakan algoritma *Cosine Similarity* maka didapat kedua vektor tersebut memiliki kesamaan penuh ($1$). Namun, jika menggunakan metode ini maka didapat perbedaan jarak sebesar:
-$$\begin{align*}\text{D}_{\text{Euclidean}}(\vec{x},\vec{y})&=\sqrt{\sum^{n}_{i=1}(x_{i}-y_{i})^2}\\&=\sqrt{\sum^{3}_{i=1}(x_{i}-y_{i})^2}\\&=\sqrt{(2-1)^2 + (0-0)^2 + (4-2)^2}\\&=\sqrt{5}\approx2.236\end{align*}$$
+Kelebihan Euclidean adalah dapat memperoleh nilai perbedaan antara dua vektor yang sama arahnya namun beda besarnya. Contoh vektor $\vec{x}=[2, 0, 4]$ dengan vektor $\vec{y}=[1, 0, 2]$ jika menggunakan algoritma *Cosine Similarity* maka didapat kedua vektor tersebut memiliki kesamaan penuh $(1)$. Namun, jika menggunakan metode ini maka didapat perbedaan jarak sebesar:
+
+$$\begin{align\*}\text{D}\_{\text{Euclidean}}(\vec{x},\vec{y})&=\sqrt{\sum^{n}\_{i=1}(x\_{i}-y\_{i})^2}\\\\&=\sqrt{\sum^{3}\_{i=1}(x\_{i}-y\_{i})^2}\\\\&=\sqrt{(2-1)^2 + (0-0)^2 + (4-2)^2}\\\\&=\sqrt{5}\approx2.236\end{align\*}$$
 
 Kemudian tingkat kemiripannya sebesar:
 
-$$\begin{align*}\text{S}_{\text{Euclidean}}(\vec{x},\vec{y})&=\frac{1}{1+\text{D}_{\text{Euclidean}}(\vec{x}, \vec{y})}\\&=\frac{1}{1+2.236}\\&=0.309\end{align*}$$
+$$\begin{align*}\text{S}\_{\text{Euclidean}}(\vec{x},\vec{y})&=\frac{1}{1+\text{D}\_{\text{Euclidean}}(\vec{x}, \vec{y})}\\\\&=\frac{1}{1+2.236}\\\\&=0.309\end{align*}$$
 
-Sedangkan kekurangan algoritma ini adalah fitur dengan frekuensi kemunculan paling banyak akan mendominasi fitur lain dalam hasil komputasi jarak euclideannya. Contoh vektor $\vec{u}=[10,2]$ dan $\vec{v}=[1, 1]$ dengan hasil jarak euclideannya didominasi oleh elemen $\vec{u}_{1}=10$ dan $\vec{v}_{1}=1$. Hal tersebut dapat diatasi dengan melakukan normalisasi atau standariasi pada data numerik [[7]](https://dl.acm.org/doi/pdf/10.1145/331499.331504). Pada kasus ini telah dilakukan normalisasi dengan *One-Hot Encoding* pada data kategorikal (genre) untuk menyamakan bobot setiap genre (frekuensi = ada tidaknya genre).
+Sedangkan kekurangan algoritma ini adalah fitur dengan frekuensi kemunculan paling banyak akan mendominasi fitur lain dalam hasil komputasi jarak euclideannya. Contoh vektor $\vec{u}=[10,2]$ dan $\vec{v}=[1, 1]$ dengan hasil jarak euclideannya didominasi oleh elemen $\vec{u}\_{1}=10$ dan $\vec{v}\_{1}=1$. Hal tersebut dapat diatasi dengan melakukan normalisasi atau standariasi pada data numerik [[7]](https://dl.acm.org/doi/pdf/10.1145/331499.331504). Pada kasus ini telah dilakukan normalisasi dengan *One-Hot Encoding* pada data kategorikal (genre) untuk menyamakan bobot setiap genre (frekuensi = ada tidaknya genre).
 
 Untuk implementasinya menggunakan fungsi `euclidean_distances()` dari *library* sklearn dengan lama waktu komputasinya sebagai berikut.
 ```
@@ -579,19 +584,21 @@ Berdasarkan Tabel 18. di atas, terdapat hal menarik pada urutan ke-18 dengan fil
 Metrik *Normalized Discounted Cumulative Gain* (nDCG) dipilih karena mampu mengevaluasi model dengan tingkat kemiripan / relevansi yang beragam. Contoh film A dan B tingkat relevansi 0 (tidak relevan semua genrenya), A dan C sebesar 1 (sebagian genre relevan), A dan D sebesar 2 (sangat relevan genrenya). Tingkat relevansi pada kasus ini didasari pada metode yang digunakan (*cosine similarity* atau *euclidean similarity*).
 
 Awal mula perhitungannya menggunakan *Cumulative Gain* (CG) sebagai berikut [[8]](https://faculty.cc.gatech.edu/~zha/CS8803WST/dcg.pdf):
-$$\text{CG}[k] = \left\{{\begin{array}{lc}\text{G}[1], & \text{jika }k=1\\\text{CG}[k-1] + \text{G}[k], & \text{jika } k\neq 1\end{array}}\right.$$
+
+$$\text{CG}[k] = \left\\{{\begin{array}{lc}\text{G}[1], & \text{jika }k=1\\\\\text{CG}[k-1] + \text{G}[k], & \text{jika } k\neq 1\end{array}}\right.$$
+
 Atau dapat ditulis ulang untuk top-k rekomendasi sebagai berikut:
-$$\text{CG@}k = \sum^{k}_{i=1}{\text{G}[i]}$$
+$$\text{CG@}k = \sum^{k}\_{i=1}{\text{G}[i]}$$
 Dengan:
 * $\text{CG}[k]$ atau $\text{CG@}k$ adalah *Cumulative Gain* pada top-k rekomendasi
-* $\text{G}[i]$ adalah *Gain* atau tingkat relevansi pada hasil rekomendasi urutan ke-$i$
+* $\text{G}[i]$ adalah *Gain* atau tingkat relevansi pada hasil rekomendasi urutan ke $i$
 
 *Discounted Cumulated Gain* (DCG) didefinisikan sebagai berikut [[8]](https://faculty.cc.gatech.edu/~zha/CS8803WST/dcg.pdf):
 
-$$\text{DCG}[k]=\left\{{\begin{array}{lc}\text{CG}[k], & \text{jika }k < b\\\text{DCG}[k-1] + \dfrac{\text{G}[k]}{^{b}\log{k}}, & \text{jika } k\geq b\end{array}}\right.$$
+$$\text{DCG}[k]=\left\\{{\begin{array}{lc}\text{CG}[k], & \text{jika }k < b\\\\\text{DCG}[k-1] + \dfrac{\text{G}[k]}{^{b}\log{k}}, & \text{jika } k\geq b\end{array}}\right.$$
 
 Dipilih $b=2$ karena cukup *smooth* dalam melakukan *discount*. Contoh *discount* pada rekomendasi urutan ke-4 maka pembaginya $^{2}\log{4} = 2$, sedangkan pada urutan ke-1024 pembaginya $^{2}\log{1024} = 10$ (rentangnya tidak terlalu jauh). Jika ditulis ulang untuk top-k rekomendasi sebagai berikut:
-$$\text{DCG@}k=\text{CG}[1] + \sum^{k}_{i=2}{\dfrac{\text{G}[i]}{^{2}\log{i}}}$$
+$$\text{DCG@}k=\text{CG}[1] + \sum^{k}\_{i=2}{\dfrac{\text{G}[i]}{^{2}\log{i}}}$$
 Dengan $\text{DCG}[k]$ atau $\text{DCG@}k$ adalah *Discounted Cumulated Gain* pada top-k rekomendasi.
 
 Muncul masalah baru dari $\text{CG@}k$ maupun $\text{DCG@}k$ yaitu nilainya akan semakin membesar jika $k$ membesar. Hal ini tentu menjadikan sulit untuk melakukan komparasi performa model pada top-k rekomendasi terutama jika berbeda nilai $k$. Untuk mengatasinya digunakan metode normalisasi untuk mengubah hasil $\text{DCG@}k$ ke dalam jangkauan 0 sampai 1.
